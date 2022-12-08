@@ -58,8 +58,14 @@ const News = (query) => {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <a href={value.article_url} className="btn btn-primary">Continue Reading</a>
+                            <button
+                                className="my-custom-button"
+                                onClick={() => window.open(value.article_url, '_blank')}
+                            >
+                                Continue Reading
+                            </button>
                         </CardActions>
+
                     </Card>
                 </Grid>
             ))}
