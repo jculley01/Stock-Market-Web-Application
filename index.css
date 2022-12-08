@@ -21,3 +21,19 @@ code {
 .down{
   color:red;
 }
+
+.my-custom-button {
+  background-color: #0096FF;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: flex-end;
+  /*box-shadow: 1px 3px gray;*/
+}
+
+.my-custom-button:hover{
+  background-color: palevioletred;
+  color: white;
+}
