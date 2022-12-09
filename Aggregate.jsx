@@ -1,14 +1,11 @@
 import {useEffect, useMemo, useState} from 'react';
 import React from 'react'
-import {CssBaseline} from "@mui/material";
-import {Grid} from "@mui/material";
-import axios from 'axios';
 import Chart from 'react-apexcharts';
 
 
 
 async function getStocks(query){
-    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/2021-07-21/2022-07-22?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
+    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/2021-12-07/2022-12-07?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
     const response=await fetch(apiUrl);
     return response.json()
 }
@@ -20,14 +17,25 @@ async function getReal(query) {
     return response.json()
 }
 
+async function getdetails(query){
+    const apiUrl=`https://api.polygon.io/v3/reference/tickers/${query.query.toString()}?apiKey=quZjqwprpqMbql20ikgeHo7Sbfh_4v8H`
+    const response=await fetch(apiUrl);
+    return response.json()
+}
+
 function Aggregate (query){
     console.log(query.query.toString());
     const [series, setSeries]=useState( [{
         data: []
     }]);
+    const [tablevals, settablevals]=useState(-1);
     const [price, setPrice]=useState(-1);
     const [pastPrice, setPastPrice]=useState(-1);
     const [priceTime,setPriceTime]=useState(null);
+    const [logourl, setlogo]=useState('')
+    const [mainurl, setmainurl]=useState('')
+    const [descript,setdescript]=useState('')
+
 
 
     useEffect(()=>{
@@ -42,7 +50,7 @@ function Aggregate (query){
                     }
 
                     const dispprice = data.results[length - 1];
-                    console.log(dispprice);
+                    settablevals(dispprice);
 
 
                     setSeries([{
@@ -75,6 +83,18 @@ function Aggregate (query){
     };
 
     useEffect(()=>{
+        getdetails(query)
+            .then((detail) => {
+                const deets = detail.results;
+                console.log(deets)
+                setlogo(deets.branding.logo_url + '?apiKey=quZjqwprpqMbql20ikgeHo7Sbfh_4v8H')
+                setmainurl(deets.homepage_url)
+                setdescript(deets.description)
+                console.log(descript);
+
+            })
+    },[query])
+    useEffect(()=>{
         let timeoutID;
         async function getlive() {
             const livetix=await getReal(query)
@@ -90,24 +110,32 @@ function Aggregate (query){
         }
 
     },[price,query])
-    console.log('Price'+price);
-    console.log('Past'+pastPrice);
+    // console.log('Price'+price);
+    // console.log('Past'+pastPrice);
+
 
 const direction= useMemo(()=>pastPrice<price?'up':pastPrice>price?'down':'',[pastPrice,price]);
+
+
     return (
-        <h1>
     <div className="price">
-        <div className={['price',direction].join(' ')}>
-            {query.query.toString()}
-            <br/>
+            <img className="logo" src={logourl}/>
+            <button
+                className="my-custom-button"
+                onClick={() => window.open(mainurl, '_blank')}
+            >
+                Explore
+            </button>
+            <p className="tixdescription">
+                {descript}
+            </p>
+            <div className={['price',direction].join(' ')}>
             ${price}
         </div>
-        <br/>
         {priceTime && priceTime.toLocaleDateString()}
         <Chart options={chart.options} series={series} type="candlestick" width="100%" height={320} />
     </div>
-            </h1>
     );
-}
+ }
 
 export default Aggregate;
