@@ -11,3 +11,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.price{
+  font-size:7vmin;
+  text-align: center;
+}
+.up{
+  color: forestgreen;
+}
+.down{
+  color:red;
+}
+
+.my-custom-button {
+  background-color: #0096FF;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: flex-end;
+  /*box-shadow: 1px 3px gray;*/
+}
+
+.my-custom-button:hover{
+  background-color: palevioletred;
+  color: white;
+}
+
+.tixdescription{
+  font-size: 2vmin;
+}
+
+.logo{
+  width: 200px;
+  height: 200px;
+}
