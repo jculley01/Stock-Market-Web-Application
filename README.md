@@ -1,6 +1,6 @@
 # EC_327_Los_Perros
 
-TEAM NAME: Team Los Perros
+Team Name: Los Perros
 
 Members: Jose Batlle, Ruben Carbajal, John Culley, Kai Imery
 
