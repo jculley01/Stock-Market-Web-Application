@@ -119,19 +119,39 @@ const direction= useMemo(()=>pastPrice<price?'up':pastPrice>price?'down':'',[pas
 
     return (
     <div className="price">
-            <img className="logo" src={logourl}/>
-            <button
-                className="my-custom-button"
-                onClick={() => window.open(mainurl, '_blank')}
-            >
-                Explore
-            </button>
-            <p className="tixdescription">
-                {descript}
-            </p>
-            <div className={['price',direction].join(' ')}>
-            ${price}
+        <div className="container">
+            <div className="card">
+                <div className="imgbox">
+                    <i className="fab logo">
+                        <img className="logo" src={logourl}/>
+                    </i>
+                </div>
+                <div className="content">
+                    <h3 id="tix">{query.query.toString()}</h3>
+                    <p> {descript}</p>
+                    <a href={mainurl}>Explore</a>
+                    <div className={['price',direction].join(' ')}>
+                                Live Price:
+                            ${price}
+                        </div>
+                </div>
+            </div>
         </div>
+        {/*    <img className="logo" src={logourl}/>*/}
+        {/*    <button*/}
+        {/*        className="my-custom-button"*/}
+        {/*        onClick={() => window.open(mainurl, '_blank')}*/}
+        {/*    >*/}
+        {/*        Explore*/}
+        {/*    </button>*/}
+        {/*    <p className="tixdescription">*/}
+        {/*        {descript}*/}
+        {/*    </p>*/}
+        {/*    <div className={['price',direction].join(' ')}>*/}
+        {/*        Live Price:*/}
+        {/*        <br/>*/}
+        {/*    ${price}*/}
+        {/*</div>*/}
         {priceTime && priceTime.toLocaleDateString()}
         <Chart options={chart.options} series={series} type="candlestick" width="100%" height={320} />
     </div>
