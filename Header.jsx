@@ -1453,18 +1453,18 @@ export default function Header({onQuery}) {
         setInputText(lowerCase);
     };
 
-    let isStock = false;
     let stock = '';
     const handleSubmit = e => {
-
+        let isStock = false;
         for(let i = 0;i<listofTickers.length;i++){
             if(inputText.toString().toLowerCase() == listofTickers[i].toLowerCase() && isStock == false){
                 isStock = true;
                 stock = inputText.toUpperCase();
             }
         }
-        if(stock==undefined){
-            stock="SPY";
+        if(isStock==false){
+            alert('Please enter a valid stock ticker')
+            stock="GOOG";
         }
         else{
             stock=stock;

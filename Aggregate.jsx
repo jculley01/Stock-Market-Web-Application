@@ -36,9 +36,9 @@ function Aggregate (query){
     const [series, setSeries]=useState( [{
         data: []
     }]);
-    const [tablevals, settablevals]=useState(-1);
-    const [price, setPrice]=useState(-1);
-    const [pastPrice, setPastPrice]=useState(-1);
+    // const [tablevals, settablevals]=useState(-1);
+    const [price, setPrice]=useState(0);
+    const [pastPrice, setPastPrice]=useState(0);
     const [priceTime,setPriceTime]=useState(null);
     const [logourl, setlogo]=useState('')
     const [mainurl, setmainurl]=useState('')
@@ -56,9 +56,7 @@ function Aggregate (query){
                         const tix = data.results[i];
                         historical[i] = [tix.t, tix.o, tix.h, tix.l, tix.c];
                     }
-
-                    const dispprice = data.results[length - 1];
-                    settablevals(dispprice);
+                    
 
 
                     setSeries([{
@@ -147,21 +145,6 @@ const direction= useMemo(()=>pastPrice<price?'up':pastPrice>price?'down':'',[pas
                         </div>
                     </div>
                 </div>
-                {/*    <img className="logo" src={logourl}/>*/}
-                {/*    <button*/}
-                {/*        className="my-custom-button"*/}
-                {/*        onClick={() => window.open(mainurl, '_blank')}*/}
-                {/*    >*/}
-                {/*        Explore*/}
-                {/*    </button>*/}
-                {/*    <p className="tixdescription">*/}
-                {/*        {descript}*/}
-                {/*    </p>*/}
-                {/*    <div className={['price',direction].join(' ')}>*/}
-                {/*        Live Price:*/}
-                {/*        <br/>*/}
-                {/*    ${price}*/}
-                {/*</div>*/}
                 {priceTime && priceTime.toLocaleDateString()}
                 <Chart options={chart.options} series={series} type="candlestick" width="100%" height={320} />
             </div>
