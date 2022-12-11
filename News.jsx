@@ -47,10 +47,14 @@ const [newsdata, setnewsdata]=useState([])
 
 
         return(
+            <div className="darkmode">
+                <div className="animate-charcter">
+                Now Trending...
+                </div>
             <Grid container spacing={3}>
                 {newsdata.map((value) => (
                     <Grid item xs={4}>
-                        <Card sx={{maxWidth: 345}}>
+                        <Card sx={{maxWidth: 345}} style={{backgroundColor: "#3d3d3d", color:"white"}}>
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
@@ -62,7 +66,7 @@ const [newsdata, setnewsdata]=useState([])
                                     <Typography gutterBottom variant="h5" component="div">
                                         {value.title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
+                                    <Typography variant="body2" color="white">
                                         {value.description}
                                     </Typography>
                                 </CardContent>
@@ -80,6 +84,7 @@ const [newsdata, setnewsdata]=useState([])
                     </Grid>
                 ))}
             </Grid>
+            </div>
         );
 
  }

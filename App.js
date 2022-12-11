@@ -43,34 +43,18 @@ const [query,setQuery]=useState("GOOG");
   return (
 <>
   <CssBaseline/>
-{/*  <Header/>*/}
-{/*  <Grid container spacing = {3} style = {{width:'100%'}}>*/}
-{/*    <Grid item xs = {12} md = {2} >*/}
-{/*      <List/>*/}
-{/*    </Grid>*/}
-{/*    <Grid item xs = {12} md = {4} >*/}
-{/*      <Aggregate/>*/}
-{/*    </Grid>*/}
-{/*    <Grid item xs = {12} md = {2} >*/}
-{/*      <Details/>*/}
-{/*    </Grid>*/}
-{/*    <Grid item xs = {12} md = {4} >*/}
-{/*      <News/>*/}
-{/*    </Grid>*/}
-{/*  </Grid>*/}
   <Header onQuery={setQuery}/>
     <Aggregate query={query}/>
-    <Divider
-        primaryColor="red"
-        secondaryColor="grey"
-        heightValue={10}
-    ></Divider>
+    {/*<Divider*/}
+    {/*    color="white"*/}
+    {/*    heightValue={1}*/}
+    {/*></Divider>*/}
     <Details query={query}/>
-    <Divider>
-        primaryColor="red"
-        secondaryColor="grey"
-        heightValue={2}
-        ></Divider>
+    {/*<Divider>*/}
+    {/*    primaryColor="red"*/}
+    {/*    secondaryColor="grey"*/}
+    {/*    heightValue={2}*/}
+    {/*    ></Divider>*/}
     <News query={query}/>
 </>
   );

@@ -1482,7 +1482,7 @@ export default function Header({onQuery}) {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar className="toolbar">
                     <Typography
                         variant="h6"
                         noWrap
@@ -1503,7 +1503,7 @@ export default function Header({onQuery}) {
                         />
 
                     </Search>
-                    <Button variant = "contained" onClick={handleSubmit}>
+                    <Button className="toolbarbutton" variant = "contained" onClick={handleSubmit}>
                         SUBMIT
                     </Button>
                 </Toolbar>

@@ -64,6 +64,7 @@ function Aggregate (query){
     const chart= {
         options: {
             chart: {
+                foreColor: '#ffffff',
                 type: 'candlestick',
                 height: 500
             },
@@ -102,9 +103,9 @@ function Aggregate (query){
             console.log(liveprice)
             setPastPrice(price);
              setPrice(liveprice);
-           timeoutID=setTimeout(getlive,2000);
+           timeoutID=setTimeout(getlive,5000);
         }
-        timeoutID=setTimeout(getlive,2000);
+        timeoutID=setTimeout(getlive,5000);
         return()=>{
             clearTimeout(timeoutID);
         }
@@ -118,43 +119,45 @@ const direction= useMemo(()=>pastPrice<price?'up':pastPrice>price?'down':'',[pas
 
 
     return (
-    <div className="price">
-        <div className="container">
-            <div className="card">
-                <div className="imgbox">
-                    <i className="fab logo">
-                        <img className="logo" src={logourl}/>
-                    </i>
-                </div>
-                <div className="content">
-                    <h3 id="tix">{query.query.toString()}</h3>
-                    <p> {descript}</p>
-                    <a href={mainurl}>Explore</a>
-                    <div className={['price',direction].join(' ')}>
-                                Live Price:
-                            ${price}
+        <div className="darkmode">
+            <div className="price">
+                <div className="container">
+                    <div className="card">
+                        <div className="imgbox">
+                            <i className="fab logo">
+                                <img className="logo" src={logourl}/>
+                            </i>
                         </div>
+                        <div className="content">
+                            <h3 id="tix">{query.query.toString()}</h3>
+                            <p> {descript}</p>
+                            <a href={mainurl}>Explore</a>
+                            <div className={['price',direction].join(' ')}>
+                                Live Price:
+                                ${price}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                {/*    <img className="logo" src={logourl}/>*/}
+                {/*    <button*/}
+                {/*        className="my-custom-button"*/}
+                {/*        onClick={() => window.open(mainurl, '_blank')}*/}
+                {/*    >*/}
+                {/*        Explore*/}
+                {/*    </button>*/}
+                {/*    <p className="tixdescription">*/}
+                {/*        {descript}*/}
+                {/*    </p>*/}
+                {/*    <div className={['price',direction].join(' ')}>*/}
+                {/*        Live Price:*/}
+                {/*        <br/>*/}
+                {/*    ${price}*/}
+                {/*</div>*/}
+                {priceTime && priceTime.toLocaleDateString()}
+                <Chart options={chart.options} series={series} type="candlestick" width="100%" height={320} />
             </div>
         </div>
-        {/*    <img className="logo" src={logourl}/>*/}
-        {/*    <button*/}
-        {/*        className="my-custom-button"*/}
-        {/*        onClick={() => window.open(mainurl, '_blank')}*/}
-        {/*    >*/}
-        {/*        Explore*/}
-        {/*    </button>*/}
-        {/*    <p className="tixdescription">*/}
-        {/*        {descript}*/}
-        {/*    </p>*/}
-        {/*    <div className={['price',direction].join(' ')}>*/}
-        {/*        Live Price:*/}
-        {/*        <br/>*/}
-        {/*    ${price}*/}
-        {/*</div>*/}
-        {priceTime && priceTime.toLocaleDateString()}
-        <Chart options={chart.options} series={series} type="candlestick" width="100%" height={320} />
-    </div>
     );
  }
 

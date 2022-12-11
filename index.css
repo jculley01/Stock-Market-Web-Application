@@ -24,40 +24,66 @@ code {
 }
 
 .my-custom-button {
-  background-color: #0e0e0e;
-  color: #ffffff;
-  border: 1px solid white;
-  border-radius: 15px;
-  padding: 8px 28px;
-  display: flex;
-  justify-content: flex-end;
-  /*box-shadow: 1px 3px gray;*/
+  display:inline-block;
+  font-size: 0.9em;
+  margin-top: 15px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color:#fff;
+  background: linear-gradient(90deg, #f403d4, #f44141,#fce628,#f403d4);
+  /*background: linear-gradient(90deg, #2f03f4, #9d41f4, #28a4fc, #0b03f4);*/
+  background-size: 400%;
+  z-index:1;
 }
 
 .my-custom-button:hover{
-  background-color: palevioletred;
-  color: white;
+  animation: animate 8s linear infinite;
 }
 
 .tixdescription{
   font-size: 2vmin;
 }
 
-
-.splitScreen{
-  display: flex;
-  flexDirection: 'row';
-}
-.topPane{
-  width: 50%
-}
-.bottomPane{
-  width: 50%
-}
 .liveprice{
   text-align: center
 }
 
+.darkmode{
+  background-color: #222;
+}
+
+.animate-charcter
+{
+  justify-content: center;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+          -225deg,
+          #c24c19 0%,
+          #f60000 29%,
+          #ff1361 67%,
+          #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
 .container{
   margin:auto;
   position: relative;
@@ -68,7 +94,6 @@ code {
   flex-wrap:wrap;
 }
 .card{
-
   position: relative;
   width: calc(100% - 20px);
   height: calc(100% - 20px);
@@ -174,7 +199,9 @@ code {
 
 }
 
-.newscards{
-  background-color: #282c34;
-  color: white;
+.toolbar{
+  background: linear-gradient(90deg, #f403d4, #f44141,#fce628,#f403d4);
+}
+.toolbarbutton{
+  background: linear-gradient(90deg, #000000, #000000, #000000, #000000);
 }

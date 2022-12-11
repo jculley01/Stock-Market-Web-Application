@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 
-
+//TODO get date
 
 async function gettablevals(query){
     const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/2021-07-21/2022-07-22?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
@@ -39,15 +39,15 @@ const Details = (query) => {
 
     return(
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="simple table" style={{backgroundColor: "#222", color:"white"}}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Details:</TableCell>
-                        <TableCell align="right">High</TableCell>
-                        <TableCell align="right">Low</TableCell>
-                        <TableCell align="right">Open</TableCell>
-                        <TableCell align="right">Close</TableCell>
-                        <TableCell align="right">Volume</TableCell>
+                        <TableCell style={{color:"white"}}>Details:</TableCell>
+                        <TableCell align="right" style={{color:"white"}}>High</TableCell>
+                        <TableCell align="right" style={{color:"white"}}>Low</TableCell>
+                        <TableCell align="right" style={{color:"white"}}>Open</TableCell>
+                        <TableCell align="right" style={{color:"white"}}>Close</TableCell>
+                        <TableCell align="right" style={{color:"white"}}>Volume</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -56,25 +56,21 @@ const Details = (query) => {
                             key={value.t}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">
+                            <TableCell component="th" scope="row" style={{color:"white"}}>
                                 {query.query.toString()}
                             </TableCell>
-                            <TableCell align="right">{value.h}</TableCell>
-                            <TableCell align="right">{value.l}</TableCell>
-                            <TableCell align="right">{value.o}</TableCell>
-                            <TableCell align="right">{value.c}</TableCell>
-                            <TableCell align="right">{value.v}</TableCell>
+                            <TableCell align="right" style={{color:"white"}}>{value.h}</TableCell>
+                            <TableCell align="right" style={{color:"white"}}>{value.l}</TableCell>
+                            <TableCell align="right" style={{color:"white"}}>{value.o}</TableCell>
+                            <TableCell align="right" style={{color:"white"}}>{value.c}</TableCell>
+                            <TableCell align="right" style={{color:"white"}}>{value.v}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-    //     <Table>
-    //         <div className="tablerender">{tablevals.map(rendertable)} </div>
-    //     </Table>
-    //
-    // )
+
 
 }
 
