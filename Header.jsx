@@ -14,7 +14,7 @@ import {Autocomplete, Button, createTheme} from "@mui/material";
 import {useEffect, useState} from "react";
 
 
-
+//creates a style for the search bar
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -30,6 +30,7 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
+//search Icon wrapper
 const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -40,6 +41,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     justifyContent: 'center',
 }));
 
+//input base for search bar
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
@@ -60,8 +62,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 let stockhandle;
+
+//onQuery is the value that is passing out the stock they have selected
 export default function Header({onQuery}) {
 
+    //this is a list of accessible tickers for the stock application to check the user's input off of
     const [ticker,setTicker] = useState("");
     const listofTickers = ['A',
         'AAL',
@@ -1429,23 +1434,7 @@ export default function Header({onQuery}) {
         'ZWS',
     ]
 
-    // const searchField = "ticker";
-    // const fetchTicker = () => {
-    //     axios.get("https://api.polygon.io/v3/reference/tickers?market=stocks&active=true&limit=1000&apiKey=VQQPPLlYPYhamSlpC43Kq3yPbotBIxsu").then((res) => {
-    //         setTicker(res.data.ticker);
-    //     });
-    // }
-
-    // useEffect(() => {
-    //     axios.get("https://api.polygon.io/v3/reference/tickers?market=stocks&active=true&limit=1000&apiKey=VQQPPLlYPYhamSlpC43Kq3yPbotBIxsu").then((res) => {
-    //         setTicker(res.data.ticker);
-    //         for(let i = 0;i<res.data.results.length;i++){
-    //             listofTickers.push(res.data.results[i][searchField])
-    //         }
-    //         console.log(listofTickers);
-    //     });
-    // },[]);
-
+    //this function takes the user's input and converts it to all lowercase
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
         //convert input text to lower case
@@ -1453,6 +1442,11 @@ export default function Header({onQuery}) {
         setInputText(lowerCase);
     };
 
+    
+    //this function takes the users input and compares it to the list of tickers to verify that the user successfully entered a ticker
+    //if the user's input was not a ticker, the application will alert the user and reset the page to its base state
+    // the variable "stock" is then passed out of this component to App.js, where it is then passed into all of the other components that need it as a parameter
+    //for their api calls
     let stock = '';
     const handleSubmit = e => {
         let isStock = false;
@@ -1473,6 +1467,9 @@ export default function Header({onQuery}) {
 
     };
 
+    
+    //this function is called when the user presses a key, if the key they press is 'Enter', it will call the handleSubmit() function to proceed with the Header's functionality
+    
     const handleKeypress = e => {
         if (e.key === 'Enter') {
             handleSubmit();
