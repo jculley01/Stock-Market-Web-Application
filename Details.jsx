@@ -11,8 +11,8 @@ import TableBody from "@mui/material/TableBody";
 
 //TODO get date
 
-async function gettablevals(query){
-    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/2021-07-21/2022-07-22?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
+async function gettablevals(query,current,day){
+    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/${current.getFullYear()-1}-${current.getMonth()}-${day}/${current.getFullYear()}-${current.getMonth()+1}-${day}?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
     const response=await fetch(apiUrl);
     return response.json()
 }
@@ -20,10 +20,17 @@ async function gettablevals(query){
 
 const Details = (query) => {
     const [tablevals, settablevals] = useState([]);
-
+    const current = new Date();
+    let day;
+    if(current.getDate()<=10){
+        day=('0'+(current.getDate()-1))
+    }
+    else{
+        day=current.getDate()-1;
+    }
 
     useEffect(() => {
-        gettablevals(query)
+        gettablevals(query,current,day)
             .then((data) => {
                 const length = data.results.length;
                 const dispprice = data.results[length - 1];

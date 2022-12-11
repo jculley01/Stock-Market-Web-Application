@@ -1,4 +1,3 @@
-//import * as React from 'react';
 import React, {useEffect, useState} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -56,20 +55,20 @@ const News = (query) => {
                     <Grid item xs={4}>
                         <Card sx={{maxWidth: 345}} style={{backgroundColor: "#3d3d3d", color:"white"}}>
                             {/*<CardActionArea>*/}
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={value.image_url}
-                                    alt="Stocks"
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {value.title}
-                                    </Typography>
-                                    <Typography variant="body2" color="white">
-                                        {value.description}
-                                    </Typography>
-                                </CardContent>
+                            <CardMedia
+                                component="img"
+                                height="140"
+                                image={value.image_url}
+                                alt="Stocks"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {value.title}
+                                </Typography>
+                                <Typography variant="body2" color="white">
+                                    {value.description}
+                                </Typography>
+                            </CardContent>
                             {/*</CardActionArea>*/}
 
                             <CardActions>
@@ -80,7 +79,7 @@ const News = (query) => {
                                     onClick={() => window.open(value.article_url, '_blank')}
                                 >
                                     <CardActionArea>
-                                    Continue Reading
+                                        Continue Reading
                                     </CardActionArea>
                                 </button>
 

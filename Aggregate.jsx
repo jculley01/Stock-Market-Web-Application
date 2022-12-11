@@ -4,8 +4,8 @@ import Chart from 'react-apexcharts';
 
 
 
-async function getStocks(query){
-    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/2021-12-07/2022-12-07?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
+async function getStocks(query,current,day){
+    const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/${current.getFullYear()-1}-${current.getMonth()+1}-${day}/${current.getFullYear()}-${current.getMonth()+1}-${day}?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
     const response=await fetch(apiUrl);
     return response.json()
 }
@@ -24,6 +24,14 @@ async function getdetails(query){
 }
 
 function Aggregate (query){
+    const current = new Date();
+    let day;
+    if(current.getDate()<=10){
+        day=('0'+(current.getDate()-1))
+    }
+    else{
+        day=current.getDate()-1;
+    }
     console.log(query.query.toString());
     const [series, setSeries]=useState( [{
         data: []
@@ -39,7 +47,7 @@ function Aggregate (query){
 
 
     useEffect(()=>{
-            getStocks(query)
+            getStocks(query,current,day)
                 .then((data) => {
                     console.log(data);
                     const length = data.results.length;
