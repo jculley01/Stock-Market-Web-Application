@@ -13,3 +13,4 @@ To "Build" our project you first need to build a React App and then need to make
 Note: Since we are using a free API keyfor Polygon io, we are only allowed 5 searches a minutes, so we highly recommend creating your own API key and inserting your own key in the API URL
 
 Youtube Video: 
+https://youtu.be/UMad2r16zcE
