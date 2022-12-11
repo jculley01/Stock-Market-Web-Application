@@ -19,20 +19,20 @@ async function getNews(query){
 }
 
 const News = (query) => {
-const [newsdata, setnewsdata]=useState([])
+    const [newsdata, setnewsdata]=useState([])
     useEffect(()=>{
-            getNews(query)
-                .then((data) => {
-                    console.log(data);
-                    console.log(data.results);
-                    setnewsdata(data.results);
-                    const length = data.results.length;
-                     const news = [];
-                    for (let i = 0; i < length; i++) {
-                      news[i] = data.results[i];
-                     }
+        getNews(query)
+            .then((data) => {
+                console.log(data);
+                console.log(data.results);
+                setnewsdata(data.results);
+                const length = data.results.length;
+                const news = [];
+                for (let i = 0; i < length; i++) {
+                    news[i] = data.results[i];
+                }
 
-                })
+            })
 
     },[query])
 
@@ -46,16 +46,16 @@ const [newsdata, setnewsdata]=useState([])
 
 
 
-        return(
-            <div className="darkmode">
-                <div className="animate-charcter">
+    return(
+        <div className="darkmode">
+            <div className="animate-charcter">
                 Now Trending...
-                </div>
+            </div>
             <Grid container spacing={3}>
                 {newsdata.map((value) => (
                     <Grid item xs={4}>
                         <Card sx={{maxWidth: 345}} style={{backgroundColor: "#3d3d3d", color:"white"}}>
-                            <CardActionArea>
+                            {/*<CardActionArea>*/}
                                 <CardMedia
                                     component="img"
                                     height="140"
@@ -70,24 +70,31 @@ const [newsdata, setnewsdata]=useState([])
                                         {value.description}
                                     </Typography>
                                 </CardContent>
-                            </CardActionArea>
+                            {/*</CardActionArea>*/}
+
                             <CardActions>
+
                                 <button
+
                                     className="my-custom-button"
                                     onClick={() => window.open(value.article_url, '_blank')}
                                 >
+                                    <CardActionArea>
                                     Continue Reading
+                                    </CardActionArea>
                                 </button>
+
                             </CardActions>
+
 
                         </Card>
                     </Grid>
                 ))}
             </Grid>
-            </div>
-        );
+        </div>
+    );
 
- }
+}
 
 
 export default News;
