@@ -43,25 +43,26 @@ const News = (query) => { //based on the query we are passing we are putting the
         color: theme.palette.text.secondary,
     }));
 
-
-
-    return( //this is where we are expecting an output of the data we fetched
+    //this is where we are expecting an output of the data we fetched
+    //then we are getting teh array of data and indexing 3 cards to go into a row and the size of each one
+    // after that we are displaying the data of the card in the style we desire such as the title, image, and decription of the respective news source
+    //at the end we are making the button on the card and doing the behavior of it
+    return(
         <div className="darkmode">
             <div className="animate-charcter">
                 Now Trending...
             </div>
             <Grid container spacing={3}>
                 {newsdata.map((value) => (
-                    <Grid item xs={4}> //here we are getting teh array of data and indexing 3 cards to go into a row and the size of each one
+                    <Grid item xs={4}> 
                         <Card sx={{maxWidth: 345}} style={{backgroundColor: "#3d3d3d", color:"white"}}>
-                            {/*<CardActionArea>*/}
                             <CardMedia
                                 component="img"
                                 height="140"
                                 image={value.image_url}
                                 alt="Stocks"
                             />
-                            <CardContent> // here we are displaying the data of the card in the style we desire such as the title, image, and decription of the respective news source
+                            <CardContent> 
                                 <Typography gutterBottom variant="h5" component="div">
                                     {value.title}
                                 </Typography>
@@ -70,7 +71,7 @@ const News = (query) => { //based on the query we are passing we are putting the
                                 </Typography>
                             </CardContent>
 
-                            <CardActions> //here we are making the button on the card and doing the behavior of it
+                            <CardActions> 
 
                                 <button
 
