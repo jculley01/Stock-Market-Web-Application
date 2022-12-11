@@ -9,15 +9,16 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 
-//TODO get date
 
+
+//this api call uses query as a stock parameter and current as a date parameter to ensure that the api is returning the correct data
 async function gettablevals(query,current,day){
     const apiUrl=`https://api.polygon.io/v2/aggs/ticker/${query.query.toString()}/range/1/day/${current.getFullYear()-1}-${current.getMonth()}-${day}/${current.getFullYear()}-${current.getMonth()+1}-${day}?adjusted=true&sort=asc&limit=500&apiKey=QVcqDoOgvanAJx0Tjpj01BtguV0OLYoA`;
     const response=await fetch(apiUrl);
     return response.json()
 }
 
-
+//query is the stock that the user successfully inputted
 const Details = (query) => {
     const [tablevals, settablevals] = useState([]);
     const current = new Date();
@@ -29,19 +30,18 @@ const Details = (query) => {
         day=current.getDate()-1;
     }
 
+    //gettablevals is taking the data from the api and processing it as a json, it is then being indexed to extract the relevant data that will then be used below on the UI
     useEffect(() => {
         gettablevals(query,current,day)
             .then((data) => {
                 const length = data.results.length;
                 const dispprice = data.results[length - 1];
                 settablevals(dispprice);
-                console.log(dispprice)
 
             })
 
     }, [query])
     const tablearray=[tablevals];
-    console.log(tablearray);
 
 
     return(
