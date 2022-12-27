@@ -1,4 +1,4 @@
-# EC_327_Los_Perros
+# Stock Market Web Application
 
 Team Name: Los Perros
 
